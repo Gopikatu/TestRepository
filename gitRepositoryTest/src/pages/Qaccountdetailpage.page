@@ -1,0 +1,23 @@
+<apex:page controller="QaccountdetailpageController">
+    <apex:form >
+            <apex:pageBlock title="Qaccount output Block">
+                    <apex:pageBlockSection title="account Section">
+                                    <apex:outputField value="{!acc.name}"/>
+                                    <apex:outputField value="{!acc.phone}"/>
+                                    <apex:outputField value="{!acc.fax}"/>
+                                    <apex:outputField value="{!acc.accountnumber}"/>
+                    </apex:pageBlockSection>
+            </apex:pageBlock>
+            <apex:pageBlock title="Qaccount input Block">
+                    <apex:pageBlockSection title="account Section2">
+                                    <apex:inputField value="{!acc.name}"/>
+                                    <apex:inputField value="{!acc.phone}"/>
+                                    <apex:inputField value="{!acc.fax}"/>
+                                    <apex:inputField value="{!acc.accountnumber}"/>
+                    </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+                          <apex:commandButton value="save" action="{!doinsertaccount}"/>
+            </apex:pageBlockButtons>
+            </apex:pageBlock>
+    </apex:form>
+</apex:page>

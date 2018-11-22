@@ -1,0 +1,13 @@
+<apex:page showHeader="false" controller="LoginPageCntrl">
+ <apex:form >
+ <apex:PageBlock >
+ <apex:pageBlockSection >
+ <apex:inputField value="{!uname.uname__c}"/> <br></br>
+ <apex:inputField value="{!uname.Passward__c}"/>
+ </apex:pageBlockSection>
+ <div align="center" draggable="false" >
+ <apex:commandButton value="Login" action="{!navigateToyoutubePage}"/>
+ </div>
+ </apex:PageBlock>
+ </apex:form>
+</apex:page>

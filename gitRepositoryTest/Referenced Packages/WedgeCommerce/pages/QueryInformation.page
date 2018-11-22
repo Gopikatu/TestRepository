@@ -1,0 +1,106 @@
+<apex:page controller="wk_wedge.QueryInformationController" title="Quote Information" showheader="false" setup="false" standardstylesheets="false" cache="false" >
+    <style>
+        .wdg-nav-icon.requestquote, .wdg-nav-icon.quotes {
+            background-color: #34becd;
+        }
+        .wdg-form--table tbody td a, .wdg-form--table tbody td a:hover, .wdg-form--table tbody td a:active, .wdg-form--table tbody td a:focus {
+            color: #3A7BC4;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .wdg-form--block .wdg-form--blocktitle {
+            padding-bottom: 14px;
+        }
+        .wdg-addOption--btn {
+                    cursor: pointer;
+                    padding: 8px;
+                    background: #7DC37D;
+                    color: #fff;
+                    display: inline-block;
+                    text-align: center;
+                    text-decoration: none;
+                    border-radius: 2px;
+                    border: none;
+                    font-size: 13px;
+                    font-weight: 600;
+                    box-shadow: none;
+                    outline: none;
+                    margin-left: 10px;
+                }
+    </style>
+    <apex:composition template="wk_wedge__EcomKulBackendTheme">
+        <apex:define name="Datacontent">
+            <apex:form id="productform">
+                <div class="wdg-body">
+                          <apex:outputpanel id="wdgErrorBlock" layout="block">
+                             <apex:messages id="pagemessgaes" styleclass="wdg-error--msg"/>
+                         </apex:outputpanel> 
+                    <div class="wdg-body--titleblock clearfix">
+                        <div class="wdg-body--title">
+                            <span class="wdg-title--logo quote"></span>
+                            <span>{!$Label.wk_wedge__query_information}</span>
+                        </div>
+                        <div class="wdg-ctrl--btnPanel">
+                            <!--<apex:commandlink styleclass="wdg-ctrl--btn save " immediate="false" onclick="return ValidateSave(event);" action="{!saveData}" >
+                                <span></span>
+                            </apex:commandlink>-->
+                            <a href="{!URLFOR($page.Quotes)}" class="wdg-ctrl--btn cancel">
+                                <span></span>
+                            </a>
+                         </div>  
+                    </div>
+                     <apex:outputpanel layout="block" styleclass="wdg-form--box" id="thefeatureform">
+                        <div class="wdg-form--header">
+                            <ul class="wdg-form--headeroptions">
+                                <li class="active"><a href="javascript:void(0)" data-target="productBlock">{!$Label.wk_wedge__general}</a></li>
+                            </ul>
+                        </div>
+                        <div id="productTabGroup" class="wdg-form--content">
+                            <apex:outputpanel layout="block" id="productBlock" styleclass="wdg-form--block">
+                                 <div class="wdg-form--blocktitle">
+                                    <span>Information </span>
+                                    <apex:outputPanel style="float:right;margin-top: -6px;" id="requestPanel">
+                                        <apex:outputPanel rendered="{!queryInfo.wk_wedge__Lead__c==null}"><a class="wdg-addOption--btn" href="javascript:void(0);" onclick="createlead();">Create Lead</a></apex:outputPanel>
+                                        <apex:outputPanel rendered="{!queryInfo.wk_wedge__Lead__c!=null}"><a class="wdg-addOption--btn" href="javascript:void(0);" >Lead Created!</a></apex:outputPanel> 
+                                    </apex:outputPanel>
+                                    <apex:actionFunction name="createlead" action="{!createlead}" rerender="requestPanel,queryInformation" status="waitstatus"/>
+                                </div>
+                                <apex:outputPanel layout="block" id="queryInformation" styleclass="wdg-form--blockfields">
+                                   <table class="wdg-form--table">
+                                       <tbody>
+                                           <tr>
+                                                <td class="label"><apex:outputlabel value="{!$Label.wk_wedge__name} :" ></apex:outputlabel></td>
+                                                <td class="field"><apex:outputLink value="/{!queryInfo.Id}">{!queryInfo.Name} {!queryInfo.wk_wedge__Last_Name__c}</apex:outputLink></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label"><apex:outputlabel value="{!$Label.wk_wedge__customerlisting_email} :" ></apex:outputlabel></td>
+                                                <td class="field">{!queryInfo.wk_wedge__Email__c}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label"><apex:outputlabel value="{!$Label.wk_wedge__company} :" ></apex:outputlabel></td>
+                                                <td class="field">{!queryInfo.wk_wedge__Company__c}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label"><apex:outputlabel value="{!$Label.wk_wedge__phone} :" ></apex:outputlabel></td>
+                                                <td class="field">{!queryInfo.wk_wedge__Phone__c}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label"><apex:outputlabel value="{!$Label.wk_wedge__message} :" ></apex:outputlabel></td>
+                                                <td class="field">{!queryInfo.wk_wedge__Message__c}</td>
+                                            </tr>
+                                            <tr style="{!if((queryInfo.wk_wedge__Lead__c==null),'display:none','display:table-row')}">
+                                                <td class="label"><apex:outputlabel value="{!$Label.wk_wedge__lead} :" rendered="{!queryInfo.wk_wedge__Lead__c!=null}"></apex:outputlabel></td>
+                                                <td class="field"><apex:outputLink value="{!queryInfo.wk_wedge__Lead__c}" rendered="{!queryInfo.wk_wedge__Lead__c!=null}">{!queryInfo.Lead__r.Name}</apex:outputLink></td>
+                                            </tr>
+                                       </tbody>                                      
+                                   </table>
+                               </apex:outputPanel>
+                            </apex:outputpanel> 
+                        </div>
+                  </apex:outputpanel>
+               </div>
+           </apex:form>
+    
+        </apex:define>
+    </apex:composition>
+</apex:page>

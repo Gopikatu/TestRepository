@@ -1,0 +1,32 @@
+<apex:page controller="AccountContactOpportunityWizardpagecntlr">
+        <apex:form >
+                <apex:pageBlock title="SummuryPage##">
+                    <apex:pageBlockSection title="AccountOutPutDetails">
+                        <apex:outputField value="{!myaccount.name}"/>
+                        <apex:outputField value="{!myaccount.AccountNumber}"/>
+                        <apex:outputField value="{!myaccount.Fax}"/>
+                        <apex:outputField value="{!myaccount.Phone}"/>
+                        <apex:outputField value="{!myaccount.Active__c}"/>
+                        <apex:outputField value="{!myaccount.ExternalID__c}"/>
+                        <apex:outputField value="{!myaccount.CustomerPriority__c}"/>
+                    </apex:pageBlockSection>
+                    <apex:pageBlockSection title="ContactOutPutDetails">
+                        <apex:outputField value="{!mycontact.lastname}"/>
+                        <apex:outputField value="{!mycontact.Phone}"/>
+                        <apex:outputField value="{!mycontact.Salary__c}"/>
+                        <apex:outputField value="{!mycontact.Level__c}"/>
+                        <apex:outputField value="{!mycontact.Fax}"/>
+                    </apex:pageBlockSection>
+                    <apex:pageBlockSection title="OppertunityOutPutDetails">
+                        <apex:outputField value="{!myopportunity.name}"/>
+                        <apex:outputField value="{!myopportunity.OrderNumber__c}"/>
+                        <apex:outputField value="{!myopportunity.Type}"/>
+                        <apex:outputField value="{!myopportunity.IsPrivate}"/>
+                        <apex:outputField value="{!myopportunity.Probability}"/>
+                    </apex:pageBlockSection>
+                    <apex:pageBlockButtons >
+                        <apex:commandButton value="Submit" action="{!submitToserver}"/>
+                    </apex:pageBlockButtons>
+                </apex:pageBlock>
+        </apex:form> 
+</apex:page>

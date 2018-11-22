@@ -1,0 +1,10 @@
+<apex:page >
+    <script>
+    function dofn(){
+    alert('hiii.....this is js string...');    
+    }
+    </script>
+    <apex:form >
+        <apex:commandButton onmouseover="dofn()" value="click me" /> 
+    </apex:form>
+</apex:page>

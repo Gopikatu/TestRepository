@@ -1,0 +1,13 @@
+<apex:page controller="attachmentControler">
+  <apex:form enctype="multipart/form-data">
+  <apex:pageBlock title="accountDetailswith attachment">
+  
+  <apex:pageBlockSection >
+  
+  <apex:inputField value="{!acc.Name}"/>
+  <apex:inputFile value="{!acc.image__c}" fileName="upload" ></apex:inputFile>
+  </apex:pageBlockSection>
+  </apex:pageBlock>
+  <apex:commandButton value="save" action="{!save}"/>
+  </apex:form>
+</apex:page>

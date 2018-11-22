@@ -1,0 +1,21 @@
+<apex:page standardController="Account" extensions="RecordsPerPage" recordSetVar="Accounts">
+<apex:form >
+<apex:PageBlock title="List of All Records">
+<apex:dataList value="{!Accounts}" var="acc">
+{!acc.Name}
+
+</apex:dataList>
+<apex:panelGrid columns="4">
+<apex:commandLink value="First" action="{!First}"/>
+<apex:commandLink value="Next" action="{!Next}"/>
+<apex:commandLink value="Previous" action="{!Previous}"/>
+<apex:commandLink value="Last" action="{!Last}"/>
+
+</apex:panelGrid>
+
+</apex:PageBlock>
+
+
+</apex:form>
+  
+</apex:page>

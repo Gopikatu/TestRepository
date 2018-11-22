@@ -1,0 +1,7 @@
+<aura:component implements="force:appHostable" controller="ShowAllContacts_ltng">
+    <aura:attribute name="allContactsList" type="contact[]"/>
+    <ui:button label="click this" press="{!c.jsFuntion}" />    
+    <aura:iteration items="{!v.allContactsList}" var="contact">    
+        <b>{!contact.name}</b>  
+    </aura:iteration>
+</aura:component>

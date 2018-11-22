@@ -1,0 +1,16 @@
+<apex:page standardController="contact">
+<apex:pageBlock title="QuickContactDetailPage">
+<apex:detail relatedList="false" />
+</apex:pageBlock>
+<apex:pageBlock title="QcontactList">
+<apex:pageBlockSection >
+<apex:outputField value="{!contact.name}"/>
+<apex:outputField value="{!contact.Salary__c}"/>
+<apex:outputField value="{!contact.phone}"/>
+<apex:outputField value="{!contact.fax}"/>
+<apex:outputField value="{!contact.createddate}"/>
+<apex:outputField value="{!contact.ownerid}"/>
+</apex:pageBlockSection>
+</apex:pageBlock>
+  
+</apex:page>

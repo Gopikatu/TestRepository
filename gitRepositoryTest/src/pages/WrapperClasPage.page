@@ -1,0 +1,16 @@
+<apex:page controller="WrapperCls">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockTable value="{!wrapperstring}" var="w">
+                <apex:column headerValue="Action">
+                    <apex:inputCheckbox />                    
+                </apex:column>
+                <apex:column headerValue="Account Name" value="{!w.accname}"/>
+                <apex:column headerValue="Account Phone" value="{!w.accphone}"/>
+                <apex:column headerValue="Account Fax" value="{!w.accfax}"/>
+                <apex:column headerValue="Contact name" value="{!w.cName}"/>
+                <apex:column headerValue="Contact Email" value="{!w.cEmail}"/>                
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

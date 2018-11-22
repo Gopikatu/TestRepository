@@ -1,0 +1,18 @@
+<apex:page controller="AccountContactOpportunityWizardpagecntlr">
+    <apex:form >
+        <apex:pageBlock title="NavigationWizards##">
+            <apex:pageBlockSection title="OppertunityInputDetails">
+                    <apex:inputField value="{!myopportunity.name}"/>
+                    <apex:inputField value="{!myopportunity.OrderNumber__c}"/>
+                    <apex:inputField value="{!myopportunity.Type}"/>
+                    <apex:inputField value="{!myopportunity.IsPrivate}"/>
+                    <apex:inputField value="{!myopportunity.Probability}"/>
+                    <apex:inputField value="{!myopportunity.StageName}"/>
+                    <apex:inputField value="{!myopportunity.CloseDate}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+                    <apex:commandButton value="next" action="{!gotoSummeryPage}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

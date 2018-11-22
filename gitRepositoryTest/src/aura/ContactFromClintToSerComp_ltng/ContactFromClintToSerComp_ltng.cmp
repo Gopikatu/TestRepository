@@ -1,0 +1,14 @@
+<aura:component implements="force:appHostable" controller="ContactFromClintToSerCont_ltng">
+    <aura:attribute name="contactinfovar" type="contact" default="{'Sobject' : 'contact'}"/>
+    <div>
+        <ui:inputText label="FirstName" value="{!v.contactinfovar.FirstName}" required="true"/>
+        <ui:inputText label="LastName" value="{!v.contactinfovar.LastName}" required="true"/>
+        <ui:inputText label="Phone" value="{!v.contactinfovar.Phone}" required="true"/>
+       
+    </div>
+    <div>
+        <ui:button aura:id="outputButton" label="Submit" press="{!c.jscontroller}"/>
+
+    </div>    
+	
+</aura:component>

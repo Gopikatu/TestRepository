@@ -1,0 +1,20 @@
+<apex:page controller="SearchCaseController" tabStyle="case">
+ <apex:form >
+   <apex:pageBlock title="searchCaseBlock">
+     <apex:pageBlockSection >
+     <apex:inputText label="Case Number:" value="{!casenumberinput}"/>
+     </apex:pageBlockSection>
+        <apex:commandButton value="search case details" action="{!searchmethod}"/>
+        <apex:pageBlockTable value="{!caserecord}" var="c">
+          <apex:column value="{!c.Status}"/>
+          <apex:column value="{!c.Origin}"/>
+          <apex:column value="{!c.Subject}"/>
+          <apex:column value="{!c.Priority}"/>
+          <apex:column value="{!c.CreatedDate}"/>
+          <apex:column value="{!c.ContactMobile}"/>
+          <apex:column value="{!c.Product__c }"/>
+
+        </apex:pageBlockTable>
+   </apex:pageBlock>
+ </apex:form>
+</apex:page>

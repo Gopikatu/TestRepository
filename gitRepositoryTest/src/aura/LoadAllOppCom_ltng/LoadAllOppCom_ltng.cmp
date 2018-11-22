@@ -1,0 +1,13 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" 
+                controller="LoadAllOpp_ltng">
+    <aura:attribute name="Opportunities" type="Opportunity[]" />
+    <ui:button label="click this" press="{!c.componentjs}" />   
+    <aura:iteration items="{!v.Opportunities}" var="opp">
+        {!opp.Name}<br/>
+         {!opp.id}<br/>
+         {!opp.CloseDate}<br/>
+        {!opp.StageName}<br/>
+    </aura:iteration>
+    <lightning:button onclick="{!c.componentjs}" label="show All Opportunities"/>
+
+</aura:component>

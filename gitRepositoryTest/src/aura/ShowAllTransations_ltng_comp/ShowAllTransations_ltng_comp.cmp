@@ -1,0 +1,81 @@
+<aura:component implements="force:appHostable" controller="ShowAllTransations_ltng">
+    <aura:attribute name="allTrans" type="Transation__c[]"/>    
+    
+    <div class="slds-m-around--large">
+  <!--PART 1 for create toggle switch/checkbox form element-->    
+  <div class="slds-form-element">
+    <label class="slds-checkbox_toggle slds-grid">
+      <span class="slds-form-element__label slds-m-bottom_none">Toggle Info</span>
+       <ui:inputCheckbox change="{!c.showjs}"/>
+      <span id="toggle-desc" class="slds-checkbox_faux_container" aria-live="assertive">
+        <span class="slds-checkbox_faux"></span>
+        <span class="slds-checkbox_on">Show</span>
+        <span class="slds-checkbox_off">Hide</span>
+      </span>
+    </label>
+  </div>
+    </div>       
+        
+    <aura:iteration items="{!v.allTrans}" var="trans" aura:id="DivID"> 
+        <article class="slds-card">
+  <div class="slds-card__header slds-grid">
+    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+      <div class="slds-media__figure">
+        <span class="slds-icon_container slds-icon-standard-contact" title="contact">
+          
+          <span class="slds-assistive-text">show all transactions</span>
+        </span>
+      </div>
+      <div class="slds-media__body">
+        <h2 class="slds-card__header-title">
+          <a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="Contacts (1)">
+            <span class="slds-text-heading_small">show all transactions</span>
+          </a>
+        </h2>
+      </div>
+      
+    </header>
+  </div>
+  <div class="slds-card__body">
+    <table class="slds-table slds-table_fixed-layout slds-table_bordered slds-no-row-hover slds-table_cell-buffer">
+      <thead>
+        <tr class="slds-text-title_caps">
+          <th scope="col">
+            <div class="slds-truncate" title="Name">Id</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Company">Transation_ID__c</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Title">Transcation_date_and_time__c</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Email">Transcation_Status__c</div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="slds-hint-parent">
+          <th scope="row">
+            <div class="slds-truncate" title="Adam Choi">
+              <a href="javascript:void(0);">{!trans.Id}</a>
+            </div>
+          </th>
+          
+          <td>
+            <div class="slds-truncate" title="Director of Operations">{!trans.lightninhcomp__Transation_ID__c}</div>
+          </td>
+          <td>
+            <div class="slds-truncate" title="adam@company.com">{!trans.lightninhcomp__Transcation_date_and_time__c}</div>
+          </td>
+		  <td>
+            <div class="slds-truncate" title="adam@company.com">{!trans.lightninhcomp__Transcation_Status__c}</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+</article>
+    </aura:iteration> 
+</aura:component>

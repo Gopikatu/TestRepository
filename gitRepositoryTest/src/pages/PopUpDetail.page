@@ -1,0 +1,4 @@
+<apex:page controller="popup" showHeader="false">
+   
+  <apex:detail relatedList="false"/>
+</apex:page>

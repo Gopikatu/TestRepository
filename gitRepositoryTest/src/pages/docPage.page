@@ -1,0 +1,12 @@
+<apex:page controller="iamgeupload">
+<apex:form >
+<apex:pageBlock >
+<apex:pageBlockSection >
+<apex:inputField value="{!acc.name}"/>
+
+
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:form>
+  
+</apex:page>

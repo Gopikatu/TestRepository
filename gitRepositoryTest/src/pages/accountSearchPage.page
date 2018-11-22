@@ -1,0 +1,21 @@
+<apex:page controller="accountSearchContler">
+<apex:pagemessages id="mes"></apex:pagemessages>   
+ <apex:Form >
+            <apex:pageBlock >
+                <apex:pageBlockSection >
+                    <apex:inputText label="AccountName" value="{!Name}"/>
+                    <apex:commandButton value="submit" action="{!getSubmit}" reRender="pageid,mes,rend,ps"/>
+                </apex:pageBlockSection>
+                </apex:pageBlock>
+            <apex:pageBlock id="rend" >
+                <apex:pageBlockSection showHeader="false" id="ps">
+                    <apex:pageBlockTable value="{!Accountrecord}" var="a" id="pageid">
+                        <apex:column value="{!a.Id}" />
+                        <apex:column value="{!a.Name}"/>
+                        <apex:column value="{!a.Phone}"/>       
+                    </apex:pageBlockTable>
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+    </apex:Form>
+    
+</apex:page>

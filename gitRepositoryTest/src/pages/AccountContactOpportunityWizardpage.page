@@ -1,0 +1,25 @@
+<apex:page controller="AccountContactOpportunityWizardpagecntlr">
+            <apex:form >
+                    <apex:pageBlock title="NavigationWizards##">
+                            <apex:pageBlockSection title="AccountInputDetails">
+                                    <apex:inputField value="{!myaccount.name}"/>
+                                    <apex:inputField value="{!myaccount.AccountNumber}"/>
+                                    <apex:inputField value="{!myaccount.Fax}"/>
+                                    <apex:inputField value="{!myaccount.Phone}"/>
+                                    <apex:inputField value="{!myaccount.Active__c}"/>
+                                    <apex:inputField value="{!myaccount.ExternalID__c}"/>
+                                    <apex:inputField value="{!myaccount.CustomerPriority__c}"/>
+                            </apex:pageBlockSection>
+                                    <apex:pageBlockSection title="ContactInputDetails">
+                                    <apex:inputField value="{!mycontact.lastname}"/>
+                                    <apex:inputField value="{!mycontact.Phone}"/>
+                                    <apex:inputField value="{!mycontact.Salary__c}"/>
+                                    <apex:inputField value="{!mycontact.Level__c}"/>
+                                    <apex:inputField value="{!mycontact.Fax}"/>
+                            </apex:pageBlockSection>
+                            <apex:pageBlockButtons >
+                                    <apex:commandButton value="next" action="{!navigatetOppInpitPage}"/>
+                            </apex:pageBlockButtons>
+                    </apex:pageBlock>
+            </apex:form> 
+</apex:page>

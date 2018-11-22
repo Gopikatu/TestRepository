@@ -1,0 +1,174 @@
+<apex:page showheader="False" standardstylesheets="false" title="eBay Configuration" controller="wk_wedge.ebayconfig" doctype="html-5.0">
+    <apex:composition template="wk_wedge__EcomKulBackendTheme">
+        <apex:define name="Datacontent">
+            <style>
+                .wdg-nav-icon.ebayconnector {
+                    background-color: #34becd;
+                }
+                .wdg-nav-icon.channelmanager {
+                    background-color: #34becd;
+                }
+                .oauthclass{
+                    width:50px;
+                }
+                .connectbutton{
+                    background-color: #7DC37D;
+                    color:white;
+                    border:none;
+                    padding:15px 25px;
+                    border-radius:3px;
+                    display:block;
+                    margin:auto;
+                }
+                .connectbutton:hover{
+                    cursor:pointer;
+                }
+                .connectbutton:disabled{
+                    background-color: darkgrey;
+                    cursor:not-allowed;
+                }
+                .newwidth{
+                    display:inline !important;
+                    width:95% !important;
+                }
+                .disabled{
+                    width:95% !important;
+                    display: inline-block !important;
+                }
+                .wdg-form--table input[type="date"], .wdg-form--table input[type="number"] {
+                    padding: 6px;
+                    border-radius: 3px;
+                    font-size: 14px;
+                    color:#222;
+                    border: 1px solid #adadad;
+                    outline: none;
+                    box-shadow: none;
+                    display:block;
+                    width:100%;
+                    box-sizing:border-box;
+                }
+                .leftcheck{
+                    
+                }
+            </style>
+            <apex:form styleclass="wdg-dataentry--form">
+            
+                <div class="wdg-body">
+                    <!--<apex:messages styleClass="wdg-error--msg"/>-->
+                   
+                    <div class="wdg-body--titleblock clearfix">
+                        <div class="wdg-body--title">
+                            <span class="wdg-title--logo ebayconfig"></span>
+                            <span> {!$Label.wk_wedge__eBay_Connector}</span>
+                        </div>
+                        <div class="wdg-ctrl--btnPanel">
+                            <apex:commandlink styleclass="wdg-ctrl--btn save " action="{!saveconfig}">
+                                <span></span>
+                            </apex:commandlink>
+                            <a href="{!$page.StoreAdmin}" class="wdg-ctrl--btn cancel"> 
+                                <span></span>
+                            </a>
+                         </div>  
+                    </div>
+                     <apex:outputpanel layout="block" id="itemblock" styleclass="wdg-form--box">
+                         <apex:outputPanel rendered="{!if((oauth==null),true,false)}">
+                             <div class="wdg-form--header">
+                                 <ul class="wdg-form--headeroptions">
+                                     <li class="active"> <a href="#">{!$Label.wk_wedge__ebay_configuration}</a></li>
+                                 </ul>
+                             </div>
+                         </apex:outputPanel>
+                         <apex:outputPanel rendered="{!if((oauth!=null),true,false)}">
+                             <div class="wdg-form--header">
+                                 <ul class="wdg-form--headeroptions">
+                                     <li class="active"> <a href="#">{!$Label.wk_wedge__ebay_configuration}</a></li>
+                                     <li class="" > <a href="{!$Page.ebay_categories}">{!$Label.wk_wedge__ebay_categories}</a></li>
+                                     <li class="" > <a href="{!$Page.ebay_products}">{!$Label.wk_wedge__ebay_products}</a></li>
+                                     <li class="" > <a href="{!$Page.ebay_customers}">{!$Label.wk_wedge__ebay_customers}</a></li>
+                                     <li class="" > <a href="{!$Page.ebay_orders}">{!$Label.wk_wedge__ebay_order}</a></li>
+                                 </ul>
+                             </div>
+                         </apex:outputPanel>
+                        <div class="wdg-form--content">
+                            <div class="wdg-form--block">
+                                <div class="wdg-form--blocktitle">
+                                    <span>{!$Label.wk_wedge__information} </span>
+                                </div>
+                                <div class="wdg-form--blockfields">
+                                    <table class="wdg-form--table">
+                                        <tbody>
+                                            <tr>
+                                                <td class="label"><apex:outputLabel >{!$Label.wk_wedge__ebay_app_id_client_id}:</apex:outputLabel>
+                                                <span><c:ToolTip helptext="{!$Label.wk_wedge__ebay_app_id_instructions}"/></span>
+                                                </td>
+                                                <td class="field"><apex:inputText value="{!appid}" styleclass="newwidth"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label"><apex:outputLabel >{!$Label.wk_wedge__ebay_dev_id}:</apex:outputLabel>
+                                                <span><c:ToolTip helptext="{!$Label.wk_wedge__ebay_dev_id_instructions}"/></span></td>
+                                                <td class="field"><apex:inputText value="{!devid}" styleclass="newwidth"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label"><apex:outputLabel >{!$Label.wk_wedge__ebay_cert_id_client_secret}:</apex:outputLabel>
+                                                <span><c:ToolTip helptext="{!$Label.wk_wedge__ebay_cert_id_client_secret_instructions}"/></span></td>
+                                                <td class="field"><apex:inputText value="{!certid}" styleclass="newwidth"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label"><apex:outputLabel >{!$Label.wk_wedge__ebay_runame}:</apex:outputLabel>
+                                                <span><c:ToolTip helptext="{!$Label.wk_wedge__ebay_runame_instructions}"/></span></td>
+                                                <td class="field"><apex:inputText value="{!runame}" styleclass="newwidth"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label"><apex:outputLabel >{!$Label.wk_wedge__ebay_sandbox}:</apex:outputLabel>
+                                                <span><c:ToolTip helptext="{!$Label.wk_wedge__ebay_sandbox_instructions}"/></span></td>
+                                                <td class="field"><apex:selectList value="{!sandbox}" styleclass="newwidth" size="1">
+                                                    <apex:selectOptions value="{!AccountTypes}"/>
+                                                </apex:selectList></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label"><apex:outputLabel >{!$Label.wk_wedge__ebay_o_auth}:</apex:outputLabel>
+                                                <span><c:ToolTip helptext="{!$Label.wk_wedge__ebay_o_auth_instructions}"/></span></td>
+                                                <td class="field">
+                                                <apex:inputTextArea value="{!oauth}" rows="5" cols="59" disabled="true"/></td>
+                                            </tr>
+                                            <!--<tr>
+                                                <td class="label"><apex:outputlabel >Authentication URL:</apex:outputlabel>
+                                                <span><c:ToolTip helptext="paste the url here after connecting and authenticating from ebay"/></span></td>
+                                                <td class="field"><apex:inputText value="{!authurl}" styleclass="newwidth"/></td>
+                                            </tr>-->
+                                            <tr>
+                                                <td class="label"><apex:outputlabel >{!$Label.wk_wedge__ebay_start_date}</apex:outputlabel>
+                                                <span><c:ToolTip helptext="{!$Label.wk_wedge__ebay_start_date_instructions}"/></span></td>
+                                                <td class="field"><apex:input type="date" value="{!selecteddate}" styleclass="newwidth"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label"><apex:outputlabel >{!$Label.wk_wedge__ebay_no_of_days}</apex:outputlabel>
+                                                <span><c:ToolTip helptext="{!$Label.wk_wedge__ebay_no_of_days_instructions}"/></span></td>
+                                                <td class="field"><apex:input html-min="1" html-max="120" type="number" value="{!days}" styleclass="newwidth"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label"><apex:outputLabel >{!$Label.wk_wedge__ebay_pricebook}:</apex:outputLabel>
+                                                <span><c:ToolTip helptext="{!$Label.wk_wedge__ebay_pricebook_instructions}"/></span></td>
+                                                <td class="field">
+                                                    <apex:outputtext value="{!pricebookname}" styleclass="disabled"/></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <apex:commandButton action="{!showif}" value="{!$Label.wk_wedge__connect_ebay}" onclick="openebay()" rerender="ifpanal" disabled="{!ConnectEnable}" styleclass="connectbutton"/>
+                                </div>
+                            </div>
+                        </div>
+                    </apex:outputpanel>  
+                </div>
+            </apex:form>
+            <script>
+                function openebay(){
+                    window.open('{!gentokenurl}');
+                }
+                $(document).ready(function(){
+                    $('mceu*').css('display','none');
+                });
+            </script>
+        </apex:define>
+    </apex:composition>
+</apex:page>

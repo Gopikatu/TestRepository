@@ -1,0 +1,144 @@
+<apex:page showheader="False" standardstylesheets="false" title="Amazon Configuration" controller="wk_wedge.amazon_config" doctype="html-5.0">
+    <apex:composition template="wk_wedge__EcomKulBackendTheme">
+        <apex:define name="Datacontent">
+            <style>
+                .wdg-nav-icon.amazonconnector {
+                background-color: #34becd;
+                }
+                .wdg-nav-icon.channelmanager {
+                background-color: #34becd;
+                }
+                .oauthclass{
+                width:50px;
+                }
+                .connectbutton{
+                background-color: #7DC37D;
+                color:white;
+                border:none;
+                padding:15px 25px;
+                border-radius:3px;
+                display:block;
+                margin:auto;
+                }
+                .connectbutton:hover{
+                cursor:pointer;
+                }
+                .connectbutton:disabled{
+                background-color: darkgrey;
+                cursor:not-allowed;
+                }
+                .newwidth{
+                display:inline !important;
+                width:95% !important;
+                }
+                .disabled{
+                width:95% !important;
+                display: inline-block !important;
+                }
+                .wdg-form--table input[type="date"], .wdg-form--table input[type="number"] {
+                padding: 6px;
+                border-radius: 3px;
+                font-size: 14px;
+                color:#222;
+                border: 1px solid #adadad;
+                outline: none;
+                box-shadow: none;
+                display:block;
+                width:100%;
+                box-sizing:border-box;
+                }
+                .leftcheck{
+                
+                }
+            </style>
+            <apex:form styleclass="wdg-dataentry--form">
+                
+                <div class="wdg-body">
+                    <!--<apex:messages styleClass="wdg-error--msg"/>-->
+                    
+                    <div class="wdg-body--titleblock clearfix">
+                        <div class="wdg-body--title">
+                            <span class="wdg-title--logo amzonconfig"></span>
+                            <span>{!$Label.wk_wedge__amazon_connector_configuration}</span>
+                        </div>
+                        <div class="wdg-ctrl--btnPanel">
+                            <apex:commandlink styleclass="wdg-ctrl--btn save " action="{!saveconfig}">
+                                <span></span>
+                            </apex:commandlink>
+                            <a href="{!$page.StoreAdmin}" class="wdg-ctrl--btn cancel"> 
+                                <span></span>
+                            </a>
+                        </div>  
+                    </div>
+                    <apex:outputpanel layout="block" id="itemblock" styleclass="wdg-form--box">
+                        <apex:outputPanel rendered="{!NOT(enableSync)}">
+                            <div class="wdg-form--header">
+                                <ul class="wdg-form--headeroptions">
+                                    <li class="active"> <a href="#">{!$Label.wk_wedge__amazon_configuration}</a></li>
+                                </ul>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!enableSync}">
+                            <div class="wdg-form--header">
+                                <ul class="wdg-form--headeroptions">
+                                    <li class="active"> <a href="#">{!$Label.wk_wedge__amazon_configuration}</a></li>
+                                    <li class=""> <a href="{!$Page.wk_wedge__amazon_product}">{!$Label.wk_wedge__amazon_products}</a></li>
+                                    <li class=""> <a href="{!$Page.wk_wedge__amazon_categories}">{!$Label.wk_wedge__amazon_categories}</a></li>
+                                    <li class=""> <a href="{!$Page.wk_wedge__amazon_customers}">{!$Label.wk_wedge__amazon_customers}</a></li>
+                                    <li class=""> <a href="{!$Page.wk_wedge__amazon_orders}">{!$Label.wk_wedge__amazon_order}</a></li>
+                                </ul>
+                            </div>
+                        </apex:outputPanel>
+                        <div class="wdg-form--content">
+                            <div class="wdg-form--block">
+                                <div class="wdg-form--blocktitle">
+                                    <span>{!$Label.wk_wedge__information} </span>
+                                </div>
+                                <div class="wdg-form--blockfields">
+                                    <table class="wdg-form--table">
+                                        <tbody>
+                                            <tr>
+                                                <td class="label"><apex:outputLabel >{!$Label.wk_wedge__amazon_mws_endpoint}:</apex:outputLabel>
+                                                    <span><c:ToolTip helptext="{!$Label.wk_wedge__amazon_mws_endpoint_instruction}"/></span>
+                                                </td>
+                                                <td class="field"><apex:inputText value="{!HOST}" styleclass="newwidth"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label"><apex:outputLabel >{!$Label.wk_wedge__amazon_marketplace_id}:</apex:outputLabel>
+                                                    <span><c:ToolTip helptext="{!$Label.wk_wedge__marketplace_id_instructions}"/></span></td>
+                                                <td class="field"><apex:inputText value="{!marketplaceID}" styleclass="newwidth"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label"><apex:outputLabel >{!$Label.wk_wedge__amazon_seller_id}:</apex:outputLabel>
+                                                    <span><c:ToolTip helptext="{!$Label.wk_wedge__seller_id_instructions}"/></span>
+                                                </td>
+                                                <td class="field"><apex:inputText value="{!SellerID}" styleclass="newwidth"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label"><apex:outputLabel >{!$Label.wk_wedge__amazon_access_key}:</apex:outputLabel>
+                                                    <span><c:ToolTip helptext="{!$Label.wk_wedge__access_key_instructions}"/></span></td>
+                                                <td class="field"><apex:inputText value="{!AccessKey}" styleclass="newwidth"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label"><apex:outputLabel >{!$Label.wk_wedge__amazon_secret_key}:</apex:outputLabel>
+                                                    <span><c:ToolTip helptext="{!$Label.wk_wedge__secret_key_instructions}"/></span></td>
+                                                <td class="field"><apex:inputText value="{!SecretKey}" styleclass="newwidth"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label"><apex:outputLabel >{!$Label.wk_wedge__amazon_pricebook}:</apex:outputLabel>
+                                                    <span><c:ToolTip helptext="{!$Label.wk_wedge__pricebook_instructions}"/></span></td>
+                                                <td class="field">
+                                                    <apex:outputtext value="{!pricebookname}" styleclass="disabled"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </apex:outputpanel>  
+                </div>
+            </apex:form>
+        </apex:define>
+    </apex:composition>
+</apex:page>

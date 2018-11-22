@@ -1,0 +1,18 @@
+<apex:page standardController="Applicant__c" extensions="ApplicationFormcntrl">
+<apex:form >
+<table>
+<tr>
+<td>Applicant Name </td>
+<td><apex:inputField value="{!Applicant__c.Name__c}"/></td>
+</tr>
+<tr>
+<td>CV </td>
+<td> <apex:inputFile accept="doc, txt, pdf" filename="{!fileName}" contentType="{!contentType}" filesize="1000" size="50" value="{!resume}"/> </td>
+</tr> 
+<tr>
+<td></td>
+<td><apex:commandButton id="submitApplicant" value="Submit" action="{!saveApplication}"/></td>
+</tr>
+</table>
+</apex:form>
+</apex:page>

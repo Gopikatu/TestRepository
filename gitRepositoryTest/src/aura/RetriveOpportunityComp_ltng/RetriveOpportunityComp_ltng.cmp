@@ -1,0 +1,19 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" 
+                access="global" controller="RetriveOpportunitycontroller_ltng">
+    <aura:attribute name="opprecords" type="Opportunity[]"/>
+            <lightning:button variant="Brand"
+                      name="show records"
+                      label="showrcords"
+                      onclick="{!c.jscontroller}"/> 
+
+    <aura:iteration items="{!v.opprecords}" var="opprec">
+        <b>{!opprec.Id}</b><br/>
+        <b>{!opprec.Name}</b><br/>
+        <b>{!opprec.CloseDate}</b><br/>
+        <b>{!opprec.StageName}</b><br/>
+        
+    
+    
+    </aura:iteration>
+	
+</aura:component>

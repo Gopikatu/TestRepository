@@ -1,0 +1,15 @@
+<aura:component implements="force:appHostable" controller="OppInsertCls_ltng">
+    <aura:attribute name="Opportunityvar" type="Opportunity" default="{'Sobject' : 'Opportunity'}"/>
+    <div class="slds-card__body slds-card__body_inner">
+            <ui:inputText label="Name" value="{!v.Opportunityvar.Name}" required="true"/>
+            <ui:inputText label="CloseDate" value="{!v.Opportunityvar.CloseDate}" required="true"/>
+           <ui:inputText label="StageName" value="{!v.Opportunityvar.StageName}" required="true"/>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+            <lightning:button variant="Brand"
+                              name="Save"
+                              label="Save"
+                              onclick="{!c.oppinsertjs}"/>                          
+        </div>
+	
+</aura:component>
